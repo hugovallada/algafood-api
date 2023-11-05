@@ -1,11 +1,9 @@
 package com.github.hugovallada.algafoodapi.services;
 
-import org.springframework.stereotype.Component;
-
 import com.github.hugovallada.algafoodapi.models.Cliente;
 import com.github.hugovallada.algafoodapi.ports.Notificador;
 
-@Component
+//@Component
 public class NotificadorEmail implements Notificador {
 
     private boolean caixaAlta;

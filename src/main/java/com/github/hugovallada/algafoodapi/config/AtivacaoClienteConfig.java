@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Profile;
 import com.github.hugovallada.algafoodapi.ports.Notificador;
 import com.github.hugovallada.algafoodapi.services.AtivacaoCliente;
 
-@Profile("exemplo-config")
+@Profile("config-example")
 @Configuration
 public class AtivacaoClienteConfig {
 

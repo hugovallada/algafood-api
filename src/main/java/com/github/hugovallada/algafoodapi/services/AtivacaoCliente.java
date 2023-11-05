@@ -11,13 +11,13 @@ import com.github.hugovallada.algafoodapi.ports.Notificador;
 @Component
 public class AtivacaoCliente {
 
-    //@Autowired(required = false) -> Diz q a dependencia não é obrigatória
+    // @Autowired(required = false) -> Diz q a dependencia não é obrigatória
     private Notificador notificador;
 
     // @Autowired // caso tenha mais de um construtor, o @Autowired define qual
     // construtor o Spring vai usar
     // O ideal é injetar via construtor
-    public AtivacaoCliente(Notificador notificador) {
+    public AtivacaoCliente(@Autowired(required = false) Notificador notificador) {
         this.notificador = notificador;
     }
 
