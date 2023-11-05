@@ -1,8 +1,7 @@
 package com.github.hugovallada.algafoodapi.services;
 
-import java.util.Objects;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.github.hugovallada.algafoodapi.models.Cliente;
@@ -14,20 +13,29 @@ public class AtivacaoCliente {
     // @Autowired(required = false) -> Diz q a dependencia não é obrigatória
     private Notificador notificador;
 
+    private List<Notificador> notificadores;
+
     // @Autowired // caso tenha mais de um construtor, o @Autowired define qual
     // construtor o Spring vai usar
     // O ideal é injetar via construtor
-    public AtivacaoCliente(@Autowired(required = false) Notificador notificador) {
-        this.notificador = notificador;
+    // É possível fazer dependencia opcional no construtor, desde q o @Autowired
+    // esteja no parametro
+    /**
+     * public AtivacaoCliente(@Autowired(required = false) @Qualifier("sms")
+     * Notificador notificador) {
+     * this.notificador = notificador;
+     * }
+     */
+
+    public AtivacaoCliente(List<Notificador> notificadores) {
+        this.notificadores = notificadores;
     }
 
     public void ativar(Cliente cliente) {
-        if (Objects.isNull(notificador)) {
-            System.out.println("Não existe notificador, mas o cliente foi ativado");
-            return;
-        }
         cliente.ativar();
-        notificador.notificar(cliente, "Seu cadastro no sistema está ativo");
+        for (var notificador : notificadores) {
+            notificador.notificar(cliente, "Seu cadastro no sistema está ativo");
+        }
     }
     /**
      * @Autowired // Pode usar o @Autowired para fazer a injeção via Setter

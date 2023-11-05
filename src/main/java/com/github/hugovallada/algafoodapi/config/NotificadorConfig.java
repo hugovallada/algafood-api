@@ -1,12 +1,11 @@
 package com.github.hugovallada.algafoodapi.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import com.github.hugovallada.algafoodapi.ports.Notificador;
 import com.github.hugovallada.algafoodapi.services.NotificadorEmail;
 
-@Configuration
+//@Configuration
 public class NotificadorConfig {
 
     @Bean
