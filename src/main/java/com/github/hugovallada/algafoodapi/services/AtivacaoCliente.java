@@ -1,6 +1,7 @@
 package com.github.hugovallada.algafoodapi.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.github.hugovallada.algafoodapi.models.Cliente;
@@ -20,7 +21,7 @@ public class AtivacaoCliente {
     // É possível fazer dependencia opcional no construtor, desde q o @Autowired
     // esteja no parametro
 
-    public AtivacaoCliente(@Autowired(required = false) Notificador notificador) {
+    public AtivacaoCliente(@Autowired(required = false) @Qualifier("sms") Notificador notificador) {
         this.notificador = notificador;
     }
 
