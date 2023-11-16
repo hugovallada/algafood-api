@@ -1,19 +1,20 @@
 package com.github.hugovallada.algafoodapi.services;
 
-import static com.github.hugovallada.algafoodapi.util.annotations.helpers.NivelUrgencia.URGENTE;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.github.hugovallada.algafoodapi.models.Cliente;
 import com.github.hugovallada.algafoodapi.ports.Notificador;
 import com.github.hugovallada.algafoodapi.util.annotations.TipoDoNotificador;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import static com.github.hugovallada.algafoodapi.util.annotations.helpers.NivelUrgencia.URGENTE;
 
 @Component
 public class AtivacaoCliente {
 
     // @Autowired(required = false) -> Diz q a dependencia não é obrigatória
-    private Notificador notificador;
+    private final Notificador notificador;
 
     // private List<Notificador> notificadores;
 
@@ -32,6 +33,16 @@ public class AtivacaoCliente {
      * this.notificadores = notificadores;
      * }
      */
+
+    @PostConstruct
+    public void init() {
+        System.out.println("INIT");
+    }
+
+    @PreDestroy
+    public void destroy() {
+        System.out.println("DESTROY");
+    }
 
     public void ativar(Cliente cliente) {
         cliente.ativar();
