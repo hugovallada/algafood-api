@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class EstadoRepositoryImpl implements EstadoRepository<Estado> {
+class EstadoRepositoryImpl implements EstadoRepository<Estado> {
 
     @PersistenceContext
     private EntityManager entityManager;
