@@ -4,6 +4,8 @@ import com.github.hugovallada.algafoodapi.domain.model.Cidade;
 import com.github.hugovallada.algafoodapi.domain.repository.CidadeRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,11 +27,13 @@ class CidadeRepositoryImpl implements CidadeRepository<Cidade> {
     }
 
     @Override
+    @Transactional
     public Cidade salvar(Cidade cidade) {
         return entityManager.merge(cidade);
     }
 
     @Override
+    @Transactional
     public void remover(Cidade cidade) {
         entityManager.remove(cidade);
     }
