@@ -82,7 +82,7 @@ public class RestauranteController {
 
     @PatchMapping("/{restauranteId}")
     ResponseEntity<?> atualizarParcial(
-            @PathVariable Long restauranteId,
+            @PathVariable Long restauranteId, 
             @RequestBody Map<String, Object> campos) {
         final var restauranteAtual = restauranteRepository.buscar(restauranteId);
         if (restauranteAtual == null) {
