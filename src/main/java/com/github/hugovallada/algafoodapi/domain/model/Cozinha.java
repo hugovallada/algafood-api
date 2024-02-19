@@ -1,6 +1,8 @@
 package com.github.hugovallada.algafoodapi.domain.model;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,6 +14,7 @@ import lombok.*;
 @Table(name = "tb_cozinha")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
+@JsonRootName("cozinha") // funciona só pro xml
 public class Cozinha {
 
     @EqualsAndHashCode.Include
@@ -20,6 +23,7 @@ public class Cozinha {
     private Long id;
 
     @Column(name = "nome_cozinha", nullable = false)
+    @JsonProperty("titulo")
     private String nome;
 
 /**

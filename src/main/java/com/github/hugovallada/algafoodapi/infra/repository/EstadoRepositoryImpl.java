@@ -1,15 +1,18 @@
 package com.github.hugovallada.algafoodapi.infra.repository;
 
-import com.github.hugovallada.algafoodapi.domain.model.Estado;
-import com.github.hugovallada.algafoodapi.domain.repository.EstadoRepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+import com.github.hugovallada.algafoodapi.domain.model.Estado;
+import com.github.hugovallada.algafoodapi.domain.repository.EstadoRepository;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
+
 @Repository
-public class EstadoRepositoryImpl implements EstadoRepository<Estado> {
+class EstadoRepositoryImpl implements EstadoRepository<Estado> {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -25,11 +28,13 @@ public class EstadoRepositoryImpl implements EstadoRepository<Estado> {
     }
 
     @Override
+    @Transactional
     public Estado salvar(Estado estado) {
         return entityManager.merge(estado);
     }
 
     @Override
+    @Transactional
     public void remover(Estado estado) {
         entityManager.remove(estado);
     }
